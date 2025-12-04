@@ -8,6 +8,8 @@ type Screen = 'loading' | 'live';
 function App() {
   const [status, setStatus] = useState<TranslatorStatus>('loading');
   const [screen, setScreen] = useState<Screen>('loading');
+  const [connectionLost, setConnectionLost] = useState(false);
+  const [uiLang, setUiLang] = useState<'en' | 'ar'>('en');
 
   // Simulated status: loading -> ready after 2.5s
   useEffect(() => {
@@ -17,18 +19,47 @@ function App() {
   }, [status]);
 
   return (
-    <LayoutShell status={status} mode="prison">
-      {screen === 'loading' ? (
-        <LoadingScreen
+    <>
+      {/* Subtle fade when switching EN/AR */}
+      <div key={uiLang} className="lang-fade">
+        <LayoutShell
           status={status}
-          onStart={() => {
-            setScreen('live');
-          }}
-        />
-      ) : (
-        <LiveTranslatorScreen />
+          mode="prison"
+          uiLang={uiLang}
+          showBack={screen === 'live'}
+          onBack={() => setScreen('loading')}
+          onToggleLang={() => setUiLang((prev) => (prev === 'en' ? 'ar' : 'en'))}
+        >
+          {screen === 'loading' ? (
+            <LoadingScreen
+              status={status}
+              uiLang={uiLang}
+              onStart={() => {
+                setScreen('live');
+              }}
+            />
+          ) : (
+            <LiveTranslatorScreen uiLang={uiLang} />
+          )}
+        </LayoutShell>
+      </div>
+
+      {connectionLost && (
+        <div className="overlay">
+          <div className="overlay-card">
+            <h3>Connection lost</h3>
+            <p>The secure translation link has dropped. Voice translation is paused.</p>
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => setConnectionLost(false)}
+            >
+              Retry
+            </button>
+          </div>
+        </div>
       )}
-    </LayoutShell>
+    </>
   );
 }
 
