@@ -1,0 +1,365 @@
+:root {
+  --color-primary: #005a69;     /* deep teal – gov */
+  --color-accent: #9ff2d5;      /* clinical mint */
+  --color-sand: #ece6d8;        /* soft sand */
+  --color-bg: #f7f9fa;
+  --color-text: #1e1e1e;
+  --color-status-green: #009c3b;
+  --radius-card: 24px;
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.08);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: radial-gradient(circle at top left, rgba(236, 230, 216, 0.8), transparent 40%),
+              linear-gradient(to bottom right, #ffffff, var(--color-sand));
+  color: var(--color-text);
+}
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 24px 16px;
+}
+
+.app-shell {
+  width: 100%;
+  max-width: 1120px;
+  min-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Top bar */
+
+.app-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(236, 230, 216, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.app-topbar-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.app-logo-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background: rgba(236, 230, 216, 0.9);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #374151;
+}
+
+.app-title {
+  font-size: 20px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.app-subtitle {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.app-topbar-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.app-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(236, 230, 216, 0.9);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 11px;
+  color: #374151;
+}
+
+.app-pill--status {
+  border: none;
+  background: var(--color-status-green);
+  color: #ffffff;
+}
+
+.app-pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.app-dev-label {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+/* Main content */
+
+.app-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card */
+
+.card {
+  width: 100%;
+  max-width: 880px;
+  border-radius: var(--radius-card);
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(236, 230, 216, 0.9);
+  box-shadow: var(--shadow-soft);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 32px 32px;
+  }
+}
+
+/* Orb */
+
+.orb-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.orb {
+  width: 76px;
+  height: 76px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, var(--color-accent), transparent 55%),
+              radial-gradient(circle at 70% 80%, rgba(0, 90, 105, 0.8), transparent 55%);
+  box-shadow: 0 0 40px rgba(0, 90, 105, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.orb-inner {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.orb-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 999px;
+  border: 1px solid rgba(159, 242, 213, 0.7);
+  opacity: 0.8;
+}
+
+/* Text */
+
+.heading {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.subheading {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Roles strip */
+
+.roles-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: rgba(236, 230, 216, 0.3);
+  border: 1px solid rgba(236, 230, 216, 0.9);
+}
+
+@media (min-width: 768px) {
+  .roles-strip {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.roles-side {
+  text-align: center;
+}
+
+.roles-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  color: #374151;
+}
+
+.roles-pill {
+  display: inline-flex;
+  margin-top: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.roles-pill--officer {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.roles-pill--subject {
+  background: var(--color-accent);
+  color: #111827;
+}
+
+.roles-center {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.roles-center-strong {
+  margin-top: 2px;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Checklist */
+
+.checklist {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.check-row {
+  display: flex;
+  gap: 8px;
+}
+
+.check-icon {
+  margin-top: 2px;
+  font-size: 12px;
+}
+
+.check-text-title {
+  font-weight: 500;
+}
+
+.check-text-help {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* Buttons */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 90, 105, 0.4);
+}
+
+.btn-primary:hover {
+  background: #004553;
+}
+
+.btn-danger {
+  background: #dc2626;
+}
+
+.btn-danger:hover {
+  background: #b91c1c;
+}
+
+/* Live dashboard placeholder */
+
+.live-placeholder {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+/* Footer */
+
+.app-footer {
+  margin-top: 8px;
+  border-radius: 18px;
+  border: 1px solid rgba(236, 230, 216, 0.9);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 6px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 11px;
+  color: #4b5563;
+}
+
+.app-footer small {
+  font-size: 10px;
+  color: #6b7280;
+}
+
+
